@@ -35,32 +35,62 @@ class PlayList {
      *  If the list is full, does nothing and returns false.
      *  Otherwise, appends the track and returns true. */
     public boolean add(Track track) {
-        //// replace the following statement with your code
+        if(this.size == this.maxSize) {
+            return false;
+        } else {
+            tracks[this.size + 1] == track;
+            this.size++;
+            //for(int i = 0; i < tracks.length; i++) {
+                //if(tracks[i] == null) {
+                    //tracks[i] = track;
+                    //size++;
+                    //break;
+                }
+            }
+        }
         return true;
     }
 
     /** Returns the data of this list, as a string. Each track appears in a separate line. */
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
-        //// replace the following statement with your code
-        return "";
+        String str = "";
+        for(int i = 0; i < this.size; i++) {
+            str += title + ", " + artist + ", " + duration "\n";
+        }
+        return str;
     }
 
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
-        //// replace this comment with your code
+        if(tracks[0] != null) {
+            tracks[this.size - 1] = null;
+            //for(int i = 0; i < tracks.length; i++) {
+                //if(tracks[i] == null) {
+                    //tracks[i-1] = null;
+                }
+            }
+        }
     }
     
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
     public int totalDuration() {
-        //// replace the following statement with your code
-        return 0;
+        int sumDuration = 0;
+        for(int i = 0; i < this.size; i++) {
+            sumDuration += tracks[i].duration;
+        }
+        return sumDuration;
     }
 
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
-        //// replace the following statement with your code
+        for(int i = 0; i < this.size; i++) {
+            if(tracks[i].title == title) {
+                return i;
+                break;
+            }
+        }
         return -1;
     }
 
@@ -71,7 +101,13 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        //// replace the following statement with your code
+        if((tracks[tracks.length - 1] != null) || (i < 0) || (i > tracks.length - 1)) {
+            return false;
+        } else {
+            for(int j = i; j < tracks.length; j++) {
+
+            }
+        }
         return false;
     }
      
