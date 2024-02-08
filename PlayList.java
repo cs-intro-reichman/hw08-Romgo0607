@@ -40,12 +40,6 @@ class PlayList {
         } else {
             tracks[this.size + 1] == track;
             this.size++;
-            //for(int i = 0; i < tracks.length; i++) {
-                //if(tracks[i] == null) {
-                    //tracks[i] = track;
-                    //size++;
-                    //break;
-                }
             }
         }
         return true;
@@ -55,7 +49,7 @@ class PlayList {
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         String str = "";
-        for(int i = 0; i < this.size; i++) {
+        for(int i = 0; i < this.toString(); i++) {
             str += title + ", " + artist + ", " + duration "\n";
         }
         return str;
@@ -65,11 +59,8 @@ class PlayList {
      public void removeLast() {
         if(tracks[0] != null) {
             tracks[this.size - 1] = null;
-            //for(int i = 0; i < tracks.length; i++) {
-                //if(tracks[i] == null) {
-                    //tracks[i-1] = null;
-                }
-            }
+                
+            
         }
     }
     
