@@ -14,12 +14,12 @@ class PlayList {
 
     /** Returns the maximum size of this play list. */ 
     public int getMaxSize() {
-        return maxSize;
+        return this.maxSize;
     }
     
     /** Returns the current number of tracks in this play list. */ 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     /** Method to get a track by index */
@@ -38,19 +38,20 @@ class PlayList {
         if(this.size == this.maxSize) {
             return false;
         } else {
-            tracks[this.size + 1] == track;
+            tracks[this.size] = track;
             this.size++;
+            return true;
             }
         }
-        return true;
-    }
+}
+    
 
     /** Returns the data of this list, as a string. Each track appears in a separate line. */
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         String str = "";
-        for(int i = 0; i < this.toString(); i++) {
-            str += title + ", " + artist + ", " + duration "\n";
+        for(int i = 0; i < this.size; i++) {
+            str += tracks[i].toString() + "/n";
         }
         return str;
     }
@@ -154,4 +155,4 @@ class PlayList {
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
     }
-}
+
