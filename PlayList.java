@@ -95,12 +95,15 @@ class PlayList {
     public boolean add(int i, Track track) {
         if((tracks[tracks.length - 1] != null) || (i < 0) || (i > tracks.length - 1)) {
             return false;
+        } else if(i == tracks.length - 1) {
+            tracks[i] = track;
         } else {
-            for(int j = i; j < tracks.length; j++) {
-
+            for(int j = tracks.length - 1; j > i + 1; j--) {
+                tracks[j] = tracks[j-1];
             }
+            tracks[i] = track;
         }
-        return false;
+        return true;
     }
      
     /** Removes the track in the given index from this list.
