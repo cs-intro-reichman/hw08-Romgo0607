@@ -43,9 +43,7 @@ class PlayList {
             }
             return true;
         }
-}
-    
-
+        
     /** Returns the data of this list, as a string. Each track appears in a separate line. */
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
