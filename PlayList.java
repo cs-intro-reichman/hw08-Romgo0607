@@ -14,12 +14,12 @@ class PlayList {
 
     /** Returns the maximum size of this play list. */ 
     public int getMaxSize() {
-        return this.maxSize;
+        return maxSize;
     }
     
     /** Returns the current number of tracks in this play list. */ 
     public int getSize() {
-        return this.size;
+        return size;
     }
 
     /** Method to get a track by index */
@@ -38,10 +38,10 @@ class PlayList {
         if(this.size == this.maxSize) {
             return false;
         } else {
-            tracks[this.size] = track;
+            this.tracks[this.size] = track;
             this.size++;
-            return true;
             }
+            return true;
         }
 }
     
@@ -51,15 +51,15 @@ class PlayList {
     public String toString() {
         String str = "";
         for(int i = 0; i < this.size; i++) {
-            str += tracks[i].toString() + "/n";
+            str += this.tracks[i].toString() + "/n";
         }
         return str;
     }
 
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
-        if(tracks[0] != null) {
-            tracks[this.size - 1] = null;
+        if(this.size != 0) {
+            this.tracks[size - 1] = null;
         }
         size--;
     }
@@ -68,7 +68,7 @@ class PlayList {
     public int totalDuration() {
         int sumDuration = 0;
         for(int i = 0; i < this.size; i++) {
-            sumDuration += tracks[i].getDuration();
+            sumDuration += this.tracks[i].getDuration();
         }
         return sumDuration;
     }
@@ -77,7 +77,7 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
         for(int i = 0; i < this.size; i++) {
-            if(tracks[i].getTitle() == title) {
+            if(this.tracks[i].getTitle() == title) {
                 return i;
                 break;
             }
@@ -92,12 +92,12 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        if((tracks[maxSize - 1] != null) || (i < 0) || (i >= maxSize)) {
+        if((size == maxSize) || (i < 0) || (i >= maxSize)) {
             return false;
         } else if(i == size) {
             tracks[i] = track;
         } else {
-            for(int j = size; j > i + 1; j--) { //moves all tracks 1 forward(makes room for new one)
+            for(int j = this.size; j > i + 1; j--) { //moves all tracks 1 forward(makes room for new one)
                 tracks[j] = tracks[j-1];
             }
             tracks[i] = track;
@@ -110,14 +110,14 @@ class PlayList {
      *  If the list is empty, or the given index is negative or too big for this list, 
      *  does nothing and returns -1. */
     public void remove(int i) {
-        if((tracks[0] == null) || (i < 0) || (i >= maxSize)) {
-            return -1;
+        if((size == 0) || (i < 0) || (i >= maxSize)) {
+            System.out.println("-1");
         } else {
             for(int j = i; j < size; j++) {
                 tracks[i] = tracks[i + 1];
             }
-            tracks[size - 1] = null;
             size--;
+            tracks[size] = null;
         }
     }
 
@@ -139,9 +139,7 @@ class PlayList {
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
-        if(size == 0){
-            return;
-        } else {
+        if(size != 0){
             remove(0);
         }
     }
@@ -150,14 +148,9 @@ class PlayList {
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-        if(this.size + other.size > maxSize) {
-            return;
-        } else {
-            for(int i = this.size; i < this.size + other.size; i++) {
-                for(int j = 0; j < other.size; j++) {
-                    tracks[i] = other[j];
-                    break;
-                }  
+        if(this.size + other.size <= this.maxSize) {
+            for(int i = 0; i < other.size; i++) {
+                this.tracks[this.size + i] == other.tracks[i];
             }
         }
         this.size =+ other.size;
@@ -172,12 +165,13 @@ class PlayList {
     private int minIndex(int start) {
         int min = tracks[start].getDuration();
         int index = start;
+
         if((start < 0) || (start > size - 1)) {
             return -1;
         } else {
             for(int i = start; i < size; i++) {
-                if(tracks[i].getDuration() < min) {
-                    min = tracks[i].getDuration();
+                if(this.tracks[i].getDuration() < min) {
+                    min = this.tracks[i].getDuration();
                     index = i;
                 }
             }
