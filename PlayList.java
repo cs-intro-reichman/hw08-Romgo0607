@@ -75,10 +75,10 @@ class PlayList {
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
+        int indexToReturn = 0;
         for(int i = 0; i < this.size; i++) {
             if(this.tracks[i].getTitle() == title) {
                 return i;
-                break;
             }
         }
         return -1;
@@ -190,9 +190,10 @@ class PlayList {
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
         int indexOfMin = 0;
+        Track temp;
         for(int i = 0; i < size; i++) {
-            indexOfMin = tracks.minIndex(i);
-            Track temp = tracks[i];
+            indexOfMin = this.minIndex(i);
+            temp = tracks[i];
             tracks[i] = tracks[indexOfMin];
             tracks[indexOfMin] = temp;
         }
