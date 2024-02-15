@@ -100,8 +100,8 @@ class PlayList {
                 tracks[j] = tracks[j-1];
             }
             tracks[i] = track;
-            size++;
         }
+        size++;
         return true;
     }
      
